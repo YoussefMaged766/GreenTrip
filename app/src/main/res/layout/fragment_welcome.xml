@@ -38,6 +38,7 @@
         android:textColor="@color/green"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/btnLogin"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -51,6 +52,7 @@
         android:fontFamily="@font/montserrat"
         android:textSize="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_16sdp"
+        android:id="@+id/btnCreateAccount"
         />
 
 

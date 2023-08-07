@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.SignUpFragment">
+    tools:context=".ui.auth.login.LoginFragment">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -18,24 +18,6 @@
         app:srcCompat="@drawable/logo1" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtNameContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_16sdp"
-        android:fontFamily="@font/montserrat"
-        android:hint="Name"
-        app:boxStrokeColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/imageView3">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/montserrat" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtEmailContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +25,7 @@
         android:fontFamily="@font/montserrat"
         android:hint="Email"
         app:boxStrokeColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/txtNameContainer">
+        app:layout_constraintTop_toBottomOf="@id/imageView3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEmail"
@@ -71,36 +53,46 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtRegionContainer"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/forgetPassword"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
         android:fontFamily="@font/montserrat"
-        android:hint="Region"
-        app:boxStrokeColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/txtPasswordContainer">
+        android:text="Lost Your Password "
+        android:textColor="@color/green"
+        app:layout_constraintEnd_toEndOf="@+id/txtPasswordContainer"
+        app:layout_constraintStart_toStartOf="@+id/txtPasswordContainer"
+        app:layout_constraintTop_toBottomOf="@id/txtPasswordContainer" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtRegion"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/montserrat" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/montserrat"
-        android:text="Create Account"
+        android:text="Login"
         android:textColor="@color/green"
-        app:layout_constraintEnd_toEndOf="@+id/txtRegionContainer"
-        app:layout_constraintStart_toStartOf="@+id/txtRegionContainer"
-        app:layout_constraintTop_toBottomOf="@id/txtRegionContainer"
-        android:id="@+id/btnCreateAccount"/>
+        app:layout_constraintEnd_toEndOf="@+id/txtPasswordContainer"
+        app:layout_constraintStart_toStartOf="@+id/txtPasswordContainer"
+        app:layout_constraintTop_toBottomOf="@id/forgetPassword"
 
+        />
+
+    <View
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/loadingIndicator"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
