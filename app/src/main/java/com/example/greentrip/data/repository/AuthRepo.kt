@@ -43,4 +43,32 @@ class AuthRepo @Inject constructor(private val webServices: WebServices) {
 
     }.flowOn(Dispatchers.IO)
 
+    fun registerUser(user: authModel) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.registerUser(user)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.status.toString())
+                    emit(Status.Error( errorResponse?.status.toString()))
+                }
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error( e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
 }

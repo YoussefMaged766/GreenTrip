@@ -10,4 +10,7 @@ interface WebServices {
     @POST("api/v1/users/login")
     suspend fun loginUser(@Body user: authModel): LoginResponse
 
+    @POST("api/v1/users/signup")
+    suspend fun registerUser(@Body user: authModel): LoginResponse
+
 }

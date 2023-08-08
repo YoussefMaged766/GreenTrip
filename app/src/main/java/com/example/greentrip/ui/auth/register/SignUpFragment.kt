@@ -1,4 +1,4 @@
-package com.example.greentrip.ui.auth.login
+package com.example.greentrip.ui.auth.register
 
 import android.os.Bundle
 import android.util.Log
@@ -10,20 +10,20 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.distinctUntilChanged
-import com.example.greentrip.databinding.FragmentLoginBinding
+import com.example.greentrip.R
+import com.example.greentrip.databinding.FragmentSignUpBinding
 import com.example.greentrip.models.authModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
-    private val viewModel by viewModels<LoginViewModel>()
-    lateinit var binding: FragmentLoginBinding
+class SignUpFragment : Fragment() {
 
+    lateinit var binding: FragmentSignUpBinding
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentSignUpBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -45,22 +45,20 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         collectStates()
-
-        binding.btnLogin.setOnClickListener {
+        binding.btnCreateAccount.setOnClickListener {
             callApi()
-
         }
-
     }
 
-
     private fun callApi() {
-        viewModel.loginUser(
-                authModel(
-                    email = binding.txtEmail.text.toString().trim(),
-                    password = binding.txtPassword.text.toString().trim()
-                )
+        viewModel.registerUser(
+            authModel(
+                email = binding.txtEmail.text.toString().trim(),
+                password = binding.txtPassword.text.toString().trim(),
+                name = binding.txtName.text.toString().trim(),
+                passwordConfirm = binding.txtPassword.text.toString().trim()
             )
+        )
     }
 
     private fun collectStates() {
@@ -84,5 +82,5 @@ class LoginFragment : Fragment() {
         }
     }
 
-}
 
+}

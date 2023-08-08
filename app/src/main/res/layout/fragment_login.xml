@@ -81,18 +81,7 @@
 
         />
 
-    <View
-        android:id="@+id/loadingOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#88000000"
-        android:visibility="gone" />
-
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/loadingIndicator"
-       />
+   <include layout="@layout/loading"
+       android:id="@+id/loading"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
