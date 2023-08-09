@@ -78,7 +78,9 @@
         app:layout_constraintEnd_toEndOf="@+id/txtPasswordContainer"
         app:layout_constraintStart_toStartOf="@+id/txtPasswordContainer"
         app:layout_constraintTop_toBottomOf="@id/forgetPassword"
-
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="#26000000"
+        app:cornerRadius="6dp"
         />
 
    <include layout="@layout/loading"

@@ -10,9 +10,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.greentrip.R
 import com.example.greentrip.databinding.FragmentSignUpBinding
-import com.example.greentrip.models.authModel
+import com.example.greentrip.models.AuthModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -52,7 +53,7 @@ class SignUpFragment : Fragment() {
 
     private fun callApi() {
         viewModel.registerUser(
-            authModel(
+            AuthModel(
                 email = binding.txtEmail.text.toString().trim(),
                 password = binding.txtPassword.text.toString().trim(),
                 name = binding.txtName.text.toString().trim(),
@@ -76,6 +77,10 @@ class SignUpFragment : Fragment() {
 
                     if (!it.isLoading &&it.status != null) {
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (!it.isLoading && it.status == "success") {
+                        findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
                     }
                 }
 

@@ -13,9 +13,10 @@
         android:src="@drawable/footsteps1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-       />
+        app:layout_constraintVertical_bias="0.501" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -28,18 +29,23 @@
         app:layout_constraintVertical_bias="2.0"
         app:srcCompat="@drawable/logo1" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/green"
-        android:padding="@dimen/_16sdp"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="12dp"
         android:text="@string/start"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:cornerRadius="6dp"
+        android:fontFamily="@font/montserrat"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

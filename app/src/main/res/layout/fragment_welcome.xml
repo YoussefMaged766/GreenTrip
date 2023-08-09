@@ -39,6 +39,9 @@
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="@dimen/_16sdp"
         android:id="@+id/btnLogin"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="#26000000"
+        app:cornerRadius="6dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -53,6 +56,9 @@
         android:textSize="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_16sdp"
         android:id="@+id/btnCreateAccount"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="#26000000"
+        app:cornerRadius="6dp"
         />
 
 

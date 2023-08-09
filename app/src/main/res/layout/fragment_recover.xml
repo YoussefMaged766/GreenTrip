@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.RecoverFragment">
+    tools:context=".ui.auth.recover.RecoverFragment">
 
 
     <ImageView
@@ -40,7 +40,10 @@
         android:fontFamily="@font/montserrat"
         android:hint="Recovery Code"
         app:boxStrokeColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/txt1">
+        app:layout_constraintTop_toBottomOf="@id/txt1"
+        app:counterMaxLength="6"
+        app:counterEnabled="true"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtCode"
@@ -54,16 +57,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
-        android:backgroundTint="@color/white"
         android:fontFamily="@font/montserrat"
         android:text="@string/recover"
         android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="@+id/txtCodeContainer"
         app:layout_constraintStart_toStartOf="@+id/txtCodeContainer"
         app:layout_constraintTop_toBottomOf="@id/txtCodeContainer"
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRecover"
         android:textSize="@dimen/_16ssp"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="#26000000"
+        app:cornerRadius="6dp"
         />
+
+    <include layout="@layout/loading"
+        android:id="@+id/loading"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

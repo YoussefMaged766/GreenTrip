@@ -3,7 +3,7 @@ package com.example.greentrip.ui.auth.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.greentrip.data.repository.AuthRepo
-import com.example.greentrip.models.authModel
+import com.example.greentrip.models.AuthModel
 import com.example.greentrip.utils.AuthState
 import com.example.greentrip.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ class SignUpViewModel  @Inject constructor(private val userRepo: AuthRepo) : Vie
     private val _state = MutableStateFlow(AuthState())
     val state = _state.asSharedFlow()
 
-    fun registerUser(user: authModel) =
+    fun registerUser(user: AuthModel) =
         viewModelScope.launch {
             userRepo.registerUser(user).collect {
                 when (it) {

@@ -1,4 +1,4 @@
-package com.example.greentrip.ui.auth.login
+package com.example.greentrip.ui.auth.recover
 
 import android.os.Bundle
 import android.util.Log
@@ -12,20 +12,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.greentrip.R
-import kotlinx.coroutines.flow.distinctUntilChanged
-import com.example.greentrip.databinding.FragmentLoginBinding
-import com.example.greentrip.models.AuthModel
+import com.example.greentrip.databinding.FragmentRecoverBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
-    private val viewModel by viewModels<LoginViewModel>()
-    lateinit var binding: FragmentLoginBinding
+class RecoverFragment : Fragment() {
 
+    lateinit var binding: FragmentRecoverBinding
+    val viewModel by viewModels<RecoverViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding  = FragmentRecoverBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -48,24 +46,10 @@ class LoginFragment : Fragment() {
 
         collectStates()
 
-        binding.btnLogin.setOnClickListener {
-            callApi()
-
-        }
-        binding.forgetPassword.setOnClickListener {
-           findNavController().navigate(R.id.action_loginFragment_to_forgetPasswordFragment)
+        binding.btnRecover.setOnClickListener {
+            viewModel.verifyCode(binding.txtCode.text.toString().trim())
         }
 
-    }
-
-
-    private fun callApi() {
-        viewModel.loginUser(
-                AuthModel(
-                    email = binding.txtEmail.text.toString().trim(),
-                    password = binding.txtPassword.text.toString().trim()
-                )
-            )
     }
 
     private fun collectStates() {
@@ -81,13 +65,19 @@ class LoginFragment : Fragment() {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
 
-                    if (!it.isLoading &&it.status != null) {
+                    if (!it.isLoading && it.status != null) {
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (!it.isLoading && it.status == "success") {
+                        val action = RecoverFragmentDirections.actionRecoverFragmentToResetPasswordFragment(binding.txtCode.text.toString().trim())
+                        findNavController().navigate(action)
                     }
                 }
 
         }
     }
 
-}
 
+
+}

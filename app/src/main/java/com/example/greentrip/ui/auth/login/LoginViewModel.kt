@@ -1,19 +1,16 @@
 package com.example.greentrip.ui.auth.login
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.greentrip.data.repository.AuthRepo
 import com.example.greentrip.models.LoginResponse
-import com.example.greentrip.models.authModel
+import com.example.greentrip.models.AuthModel
 import com.example.greentrip.utils.AuthState
 import com.example.greentrip.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +31,7 @@ class LoginViewModel @Inject constructor(private val userRepo: AuthRepo) : ViewM
     val state = _state.asSharedFlow()
 
 
-    fun loginUser(user: authModel) =
+    fun loginUser(user: AuthModel) =
         viewModelScope.launch {
             userRepo.loginUser(user).collect {
                 when (it) {

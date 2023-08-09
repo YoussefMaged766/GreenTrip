@@ -1,6 +1,6 @@
 package com.example.greentrip.models
 
-data class authModel(
+data class AuthModel(
     val email: String?=null,
     val password: String?=null,
     val name: String?=null,
