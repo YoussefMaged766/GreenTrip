@@ -36,26 +36,10 @@ class LoginViewModel @Inject constructor(private val userRepo: AuthRepo) : ViewM
             userRepo.loginUser(user).collect {
                 when (it) {
                     is Status.Loading -> {
-//                   _stateLoad.value = true
-//                         _state.update {state->
-//                             state.copy(isLoading = true)
-//
-//                         }
                         _state.value = _state.value.copy(isLoading = true)
                     }
 
                     is Status.Success -> {
-//                   _stateLoad.value = false
-//                   _stateStatus.value = it.data
-//                   _stateMessage.value = it.data.status.toString()
-//                         _state.update {state->
-//                             state.copy(isLoading = false,
-//                                 status = state.status.toString(),
-//                                 userLogin = state.userLogin
-//
-//                             )
-//
-//                         }
 
                         _state.value = _state.value.copy(
                             isLoading = false,
@@ -66,14 +50,6 @@ class LoginViewModel @Inject constructor(private val userRepo: AuthRepo) : ViewM
                     }
 
                     is Status.Error -> {
-//                   _stateLoad.value = false
-//                   _stateMessage.value = it.message
-//                        _state.update { state ->
-//                            state.copy(
-//                                isLoading = false,
-//                                status = state.status.toString()
-//                            )
-//                        }
 
                         _state.value = _state.value.copy(
                             isLoading = false,

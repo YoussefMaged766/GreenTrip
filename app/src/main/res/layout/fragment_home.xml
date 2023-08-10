@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_8sdp"
+    tools:context=".ui.main.home.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/cardPointsOfInterest"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Points of Interest"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#081F32"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:id="@+id/txtPointsOfInterest"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/green_circle"
+                android:id="@+id/imgPoints"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/imgPoints"
+                app:layout_constraintStart_toStartOf="@id/imgPoints"
+                app:layout_constraintBottom_toBottomOf="@id/imgPoints"
+                app:layout_constraintEnd_toEndOf="@id/imgPoints"
+                android:src="@drawable/points"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Find nearby Points of Interest, make reservations for future visits, and redeem points when visiting these places."
+                android:textColor="#6E798C"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgPoints"
+                app:layout_constraintStart_toStartOf="@id/txtPointsOfInterest"
+                app:layout_constraintTop_toBottomOf="@id/txtPointsOfInterest"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardPointsOfInterest"
+        android:id="@+id/cardRewards"
+        android:layout_marginTop="@dimen/_16sdp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rewards"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#081F32"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:id="@+id/txtRewards"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/green_circle"
+                android:id="@+id/imgRewards"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/imgRewards"
+                app:layout_constraintStart_toStartOf="@id/imgRewards"
+                app:layout_constraintBottom_toBottomOf="@id/imgRewards"
+                app:layout_constraintEnd_toEndOf="@id/imgRewards"
+                android:src="@drawable/rewards"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Exchange your points for vouchers.
+"
+                android:textColor="#6E798C"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgRewards"
+                app:layout_constraintStart_toStartOf="@id/txtRewards"
+                app:layout_constraintTop_toBottomOf="@id/imgRewards"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardRewards"
+        android:id="@+id/cardVouchers"
+        android:layout_marginTop="@dimen/_16sdp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Points and Vouchers"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#081F32"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:id="@+id/txtVouchers"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/green_circle"
+                android:id="@+id/imgVouchers"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/imgVouchers"
+                app:layout_constraintStart_toStartOf="@id/imgVouchers"
+                app:layout_constraintBottom_toBottomOf="@id/imgVouchers"
+                app:layout_constraintEnd_toEndOf="@id/imgVouchers"
+                android:src="@drawable/vouchers"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="View available points and vouchers. Exchange your points for vouchers."
+                android:textColor="#6E798C"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgVouchers"
+                app:layout_constraintStart_toStartOf="@id/txtVouchers"
+                app:layout_constraintTop_toBottomOf="@id/imgVouchers"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardVouchers"
+        android:id="@+id/cardBooking"
+        android:layout_marginTop="@dimen/_16sdp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Booking"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#081F32"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:id="@+id/txtBooking"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/green_circle"
+                android:id="@+id/imgBooking"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/imgBooking"
+                app:layout_constraintStart_toStartOf="@id/imgBooking"
+                app:layout_constraintBottom_toBottomOf="@id/imgBooking"
+                app:layout_constraintEnd_toEndOf="@id/imgBooking"
+                android:src="@drawable/booking"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="View data for active bookings. You can access canceled bookings and cancel the active ones."
+                android:textColor="#6E798C"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgBooking"
+                app:layout_constraintStart_toStartOf="@id/txtBooking"
+                app:layout_constraintTop_toBottomOf="@id/imgBooking"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cardBooking"
+        android:id="@+id/cardProfile"
+        android:layout_marginTop="@dimen/_16sdp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#081F32"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:id="@+id/txtProfile"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/green_circle"
+                android:id="@+id/imgProfile"
+
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf="@id/imgProfile"
+                app:layout_constraintStart_toStartOf="@id/imgProfile"
+                app:layout_constraintBottom_toBottomOf="@id/imgProfile"
+                app:layout_constraintEnd_toEndOf="@id/imgProfile"
+                android:src="@drawable/profile"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Change your personal data and find your statistics."
+                android:textColor="#6E798C"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/imgProfile"
+                app:layout_constraintStart_toStartOf="@id/txtProfile"
+                app:layout_constraintTop_toBottomOf="@id/imgProfile"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

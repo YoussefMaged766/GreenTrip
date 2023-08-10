@@ -3,7 +3,8 @@ package com.example.greentrip.models
 data class LoginResponse(
     val data: Data?=null,
     val status: String?=null,
-    val token: String?=null
+    val token: String?=null,
+    val message: String?=null
 )
 
 data class Data(

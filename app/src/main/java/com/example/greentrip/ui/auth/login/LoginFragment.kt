@@ -1,5 +1,6 @@
 package com.example.greentrip.ui.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.greentrip.HomeActivity
 import com.example.greentrip.R
 import kotlinx.coroutines.flow.distinctUntilChanged
 import com.example.greentrip.databinding.FragmentLoginBinding
@@ -83,6 +85,11 @@ class LoginFragment : Fragment() {
 
                     if (!it.isLoading &&it.status != null) {
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (!it.isLoading && it.status == "success") {
+                        startActivity(Intent(requireContext(), HomeActivity::class.java))
+                        requireActivity().finish()
                     }
                 }
 
