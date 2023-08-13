@@ -9,11 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.greentrip.HomeActivity
 import com.example.greentrip.R
+import com.example.greentrip.constants.Constants
+import com.example.greentrip.constants.Constants.dataStore
 import kotlinx.coroutines.flow.distinctUntilChanged
 import com.example.greentrip.databinding.FragmentLoginBinding
 import com.example.greentrip.models.AuthModel
@@ -25,8 +31,10 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
     private val viewModel by viewModels<LoginViewModel>()
     lateinit var binding: FragmentLoginBinding
+    private lateinit var dataStore: DataStore<Preferences>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,11 +96,22 @@ class LoginFragment : Fragment() {
                     }
 
                     if (!it.isLoading && it.status == "success") {
+
+                        saveToken(Constants.TOKEN, it.userLogin?.token.toString())
+
                         startActivity(Intent(requireContext(), HomeActivity::class.java))
                         requireActivity().finish()
                     }
                 }
 
+        }
+    }
+
+    private suspend fun saveToken(key: String, value: String) {
+        dataStore = requireContext().dataStore
+        val dataStoreKey = stringPreferencesKey(key)
+        dataStore.edit {
+            it[dataStoreKey] = value
         }
     }
 
