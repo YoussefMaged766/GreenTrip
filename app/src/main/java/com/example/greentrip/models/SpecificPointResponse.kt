@@ -19,7 +19,8 @@ data class SpecificPointResponse(
             val name: String?,
             val photo: String?,
             val qrcode: String?,
-            val slug: String?
+            val slug: String?,
+            val description: String?
         ) {
             data class Activity(
                 val __v: Int?,

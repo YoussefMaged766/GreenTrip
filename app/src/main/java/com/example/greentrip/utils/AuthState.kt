@@ -1,5 +1,6 @@
 package com.example.greentrip.utils
 
+import com.example.greentrip.models.ActivityResponse
 import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.models.PointsResponse
 import com.example.greentrip.models.SpecificPointResponse
@@ -11,5 +12,6 @@ data class AuthState(
     val userLogin: LoginResponse? = null,
     val profile :UserResponse? = null,
     val points :PointsResponse? = null,
-    val specificPoint:SpecificPointResponse? = null
+    val specificPoint:SpecificPointResponse? = null,
+    val activity : ActivityResponse? = null
 )

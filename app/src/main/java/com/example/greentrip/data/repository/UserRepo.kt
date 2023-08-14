@@ -3,6 +3,7 @@ package com.example.greentrip.data.repository
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.example.greentrip.models.BookingModel
 import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.utils.Status
 import com.example.greentrip.utils.WebServices
@@ -168,5 +169,94 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
         }
 
     }.flowOn(Dispatchers.IO)
+
+    fun getActivity(id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getAllActivities(id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+
+    fun booking(booking:BookingModel) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.booking(booking)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+    fun addPoint(booking:BookingModel) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.addPoint(booking)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+
 
 }

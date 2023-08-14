@@ -1,7 +1,9 @@
 package com.example.greentrip.utils
 
+import com.example.greentrip.models.ActivityResponse
 import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.models.AuthModel
+import com.example.greentrip.models.BookingModel
 import com.example.greentrip.models.PointsResponse
 import com.example.greentrip.models.SpecificPointResponse
 import com.example.greentrip.models.UserResponse
@@ -50,5 +52,14 @@ interface WebServices {
 
     @GET("api/v1/points/{id}")
     suspend fun getSpecificPoints(@Path("id") id:String):SpecificPointResponse
+
+    @GET("api/v1/actvities/points/{pointId}")
+    suspend fun getAllActivities(@Path("pointId") pointId:String):ActivityResponse
+
+    @POST("api/v1/bookings/")
+    suspend fun booking(@Body booking :BookingModel):ActivityResponse
+
+    @PATCH("api/v1/users/points/add")
+    suspend fun addPoint(@Body booking :BookingModel):ActivityResponse
 
 }
