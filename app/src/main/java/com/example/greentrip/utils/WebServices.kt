@@ -2,6 +2,8 @@ package com.example.greentrip.utils
 
 import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.models.AuthModel
+import com.example.greentrip.models.PointsResponse
+import com.example.greentrip.models.SpecificPointResponse
 import com.example.greentrip.models.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -42,5 +44,11 @@ interface WebServices {
         @Part("phone") phone: RequestBody,
         @Part image: MultipartBody.Part? = null,
         ): UserResponse
+
+    @GET("api/v1/points/")
+    suspend fun getAllPoints():PointsResponse
+
+    @GET("api/v1/points/{id}")
+    suspend fun getSpecificPoints(@Path("id") id:String):SpecificPointResponse
 
 }

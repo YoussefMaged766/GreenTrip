@@ -17,6 +17,14 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_exit_anim"
             app:popExitAnim="@anim/pop_enter_anim"/>
+        <action
+            android:id="@+id/action_homeFragment_to_mainPointsFragment"
+            app:destination="@id/mainPointsFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -43,5 +51,23 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_exit_anim"
             app:popExitAnim="@anim/pop_enter_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mainPointsFragment"
+        android:name="com.example.greentrip.ui.main.points.MainPointsFragment"
+        android:label="fragment_main_points"
+        tools:layout="@layout/fragment_main_points" >
+        <action
+            android:id="@+id/action_mainPointsFragment_to_pointDetailsFragment"
+            app:destination="@id/pointDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pointDetailsFragment"
+        android:name="com.example.greentrip.ui.main.points.PointDetailsFragment"
+        android:label="fragment_point_details"
+        tools:layout="@layout/fragment_point_details" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

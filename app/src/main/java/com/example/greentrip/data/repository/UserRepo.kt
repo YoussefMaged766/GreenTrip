@@ -3,7 +3,6 @@ package com.example.greentrip.data.repository
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import com.example.greentrip.models.AuthModel
 import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.utils.Status
 import com.example.greentrip.utils.WebServices
@@ -110,5 +109,64 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
         )
         return MultipartBody.Part.createFormData(partName, file.name, requestFile)
     }
+
+
+    fun getAllPoints() = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getAllPoints()
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    fun getSpecificPoint(id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getSpecificPoints(id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
 
 }
