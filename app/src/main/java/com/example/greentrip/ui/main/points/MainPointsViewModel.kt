@@ -109,8 +109,8 @@ class MainPointsViewModel @Inject constructor(private val userRepo: UserRepo) : 
 
                         _stateBooking.value = _stateBooking.value.copy(
                             isLoading = false,
-                            status = it.data.status.toString(),
-                            activity = it.data
+                            status = it.data.status.toString()
+
 
                         )
 

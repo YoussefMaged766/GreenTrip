@@ -1,6 +1,5 @@
-package com.example.greentrip.ui.main.points
+package com.example.greentrip.ui.main.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,11 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.greentrip.HomeActivity
 import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
-import com.example.greentrip.databinding.FragmentPointsConfirmBookingBinding
-import com.example.greentrip.models.AuthModel
+import com.example.greentrip.databinding.FragmentActivityConfirmReservationBinding
 import com.example.greentrip.models.BookingModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -25,12 +22,13 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
-class PointsConfirmBookingFragment : Fragment() {
 
-    lateinit var binding: FragmentPointsConfirmBookingBinding
-    val viewModel: MainPointsViewModel by viewModels()
-    val data: PointsConfirmBookingFragmentArgs by navArgs()
+@AndroidEntryPoint
+class ActivityConfirmReservationFragment : Fragment() {
+    lateinit var binding:FragmentActivityConfirmReservationBinding
+    private val viewModel :AllActivityViewModel by viewModels()
+    val data :ActivityConfirmReservationFragmentArgs by navArgs()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,7 @@ class PointsConfirmBookingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPointsConfirmBookingBinding.inflate(layoutInflater)
+      binding = FragmentActivityConfirmReservationBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -51,22 +49,19 @@ class PointsConfirmBookingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         collectStates()
-        collectStatesPoint()
-
-        viewModel.getSpecificPoints(data.idPoint)
+        collectStatesActivity()
+        viewModel.getSpecificActivity(data.id)
 
         binding.btnRequestReservation.setOnClickListener {
             callApi()
         }
 
     }
-
     private fun callApi() {
         viewModel.booking(
             BookingModel(
-                type = "point",
-                point = data.idPoint,
-                numOfDays = binding.txtDaysNum.text.toString().toInt(),
+                type = "activity",
+                activity = data.id,
                 numOfTickets = binding.txtPeopleNum.text.toString().toInt(),
             )
         )
@@ -96,10 +91,11 @@ class PointsConfirmBookingFragment : Fragment() {
         }
     }
 
-    private fun collectStatesPoint() {
+
+    private fun collectStatesActivity() {
         viewLifecycleOwner.lifecycleScope.launch {
 
-            viewModel.statePoint
+            viewModel.stateActivity
                 .distinctUntilChanged()
                 .onEach {
                     Log.e("collectStates: ", it.status.toString())
@@ -110,10 +106,10 @@ class PointsConfirmBookingFragment : Fragment() {
                     binding.loading.loadingOverlay.isVisible = it.isLoading
 
                     if (!it.isLoading &&it.status != null) {
+                        binding.txtActivityName.text = it.specificPoint?.data?.data?.name
+                        binding.txtPointName.text = it.specificPoint?.data?.data?.pointOfInterest?.name
 
-                        binding.txtPointName.text = it.specificPoint?.data?.data?.name
-
-                        val image = "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.photo}"
+                        val image = "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.pointOfInterest?.photo}"
                         Glide.with(binding.root).load(image).into(binding.pointImg)
 
 
@@ -127,6 +123,7 @@ class PointsConfirmBookingFragment : Fragment() {
 
         }
     }
+
 
 
 }

@@ -57,9 +57,14 @@ interface WebServices {
     suspend fun getAllActivities(@Path("pointId") pointId:String):ActivityResponse
 
     @POST("api/v1/bookings/")
-    suspend fun booking(@Body booking :BookingModel):ActivityResponse
+    suspend fun booking(@Body booking :BookingModel):SpecificPointResponse
 
     @PATCH("api/v1/users/points/add")
     suspend fun addPoint(@Body booking :BookingModel):ActivityResponse
+
+    @GET("api/v1/actvities/{id}")
+    suspend fun getSpecificActivity(@Path("id") id:String):SpecificPointResponse
+
+
 
 }

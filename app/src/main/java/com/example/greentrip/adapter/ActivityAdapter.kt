@@ -14,10 +14,12 @@ import com.example.greentrip.databinding.PointItemBinding
 import com.example.greentrip.models.ActivityResponse
 import com.example.greentrip.models.PointsResponse
 import com.example.greentrip.models.SpecificPointResponse
+import com.example.greentrip.ui.main.activity.AllActivityFragmentDirections
 import com.example.greentrip.ui.main.points.MainPointsFragmentDirections
 import com.example.greentrip.ui.main.points.PointDetailsFragmentDirections
 
-class ActivityAdapter() : ListAdapter<ActivityResponse.Data, ActivityAdapter.viewholder>(ActivityAdapter){
+class ActivityAdapter() :
+    ListAdapter<ActivityResponse.Data, ActivityAdapter.viewholder>(ActivityAdapter) {
 
     companion object : DiffUtil.ItemCallback<ActivityResponse.Data>() {
         override fun areItemsTheSame(
@@ -49,16 +51,20 @@ class ActivityAdapter() : ListAdapter<ActivityResponse.Data, ActivityAdapter.vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
-    val binding =
-        PointItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            PointItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return viewholder(binding)
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-       holder.bind(getItem(position))
+        holder.bind(getItem(position))
         holder.binding.root.setOnClickListener {
+            val action =
+                AllActivityFragmentDirections.actionAllActivityFragmentToActivityConfirmReservationFragment(
+                    getItem(position).id.toString()
+                )
+            it.findNavController().navigate(action)
 
-          it.findNavController().navigate(R.id.action_pointDetailsFragment_to_allActivityFragment)
         }
     }
 

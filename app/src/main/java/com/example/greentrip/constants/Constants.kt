@@ -11,7 +11,7 @@ object Constants {
 
     val Context.dataStore: DataStore<Preferences> by preferencesDataStore("save")
 
-    const val BASEURL = "http://192.168.1.7:8080/"
+    const val BASEURL = "http://192.168.43.94:8080/"
 
     const val TOKEN = "token"
 
