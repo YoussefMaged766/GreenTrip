@@ -5,7 +5,9 @@ import com.example.greentrip.models.LoginResponse
 import com.example.greentrip.models.AuthModel
 import com.example.greentrip.models.BookingModel
 import com.example.greentrip.models.PointsResponse
+import com.example.greentrip.models.RewardResponse
 import com.example.greentrip.models.SpecificPointResponse
+import com.example.greentrip.models.SpecificRewardResponse
 import com.example.greentrip.models.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -29,10 +31,10 @@ interface WebServices {
     suspend fun forgotPassword(@Body user: AuthModel): LoginResponse
 
     @GET("api/v1/users/resetPassword/verify/{token}")
-    suspend fun verifyRecoverCode(@Path("token") token:String): LoginResponse
+    suspend fun verifyRecoverCode(@Path("token") token: String): LoginResponse
 
     @PATCH("api/v1/users/resetPassword/{token}")
-    suspend fun resetPassword(@Body user: AuthModel, @Path("token") token:String ) : LoginResponse
+    suspend fun resetPassword(@Body user: AuthModel, @Path("token") token: String): LoginResponse
 
 
     @GET("api/v1/users/me")
@@ -45,26 +47,31 @@ interface WebServices {
         @Part("email") email: RequestBody,
         @Part("phone") phone: RequestBody,
         @Part image: MultipartBody.Part? = null,
-        ): UserResponse
+    ): UserResponse
 
     @GET("api/v1/points/")
-    suspend fun getAllPoints():PointsResponse
+    suspend fun getAllPoints(): PointsResponse
 
     @GET("api/v1/points/{id}")
-    suspend fun getSpecificPoints(@Path("id") id:String):SpecificPointResponse
+    suspend fun getSpecificPoints(@Path("id") id: String): SpecificPointResponse
 
     @GET("api/v1/actvities/points/{pointId}")
-    suspend fun getAllActivities(@Path("pointId") pointId:String):ActivityResponse
+    suspend fun getAllActivities(@Path("pointId") pointId: String): ActivityResponse
 
     @POST("api/v1/bookings/")
-    suspend fun booking(@Body booking :BookingModel):SpecificPointResponse
+    suspend fun booking(@Body booking: BookingModel): SpecificPointResponse
 
     @PATCH("api/v1/users/points/add")
-    suspend fun addPoint(@Body booking :BookingModel):ActivityResponse
+    suspend fun addPoint(@Body booking: BookingModel): ActivityResponse
 
     @GET("api/v1/actvities/{id}")
-    suspend fun getSpecificActivity(@Path("id") id:String):SpecificPointResponse
+    suspend fun getSpecificActivity(@Path("id") id: String): SpecificPointResponse
 
+    @GET("api/v1/rewards/")
+    suspend fun getAllRewards(): RewardResponse
+
+    @GET("api/v1/rewards/{id}")
+    suspend fun getSpecificReward(@Path("id") id: String): SpecificRewardResponse
 
 
 }

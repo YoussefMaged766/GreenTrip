@@ -9,4 +9,6 @@
     <string name="enter_your_n_recovery_email">Enter Your\n Recovery Email</string>
     <string name="enter_the_code_sent_nto_your_email">Enter the code sent \nto your email</string>
     <string name="new_password">New Password</string>
+
+    <string name="reedem_point">Access the Points and Vouchers menu to see your voucher</string>
 </resources>
