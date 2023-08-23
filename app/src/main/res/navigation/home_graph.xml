@@ -33,6 +33,14 @@
             app:popEnterAnim="@anim/pop_exit_anim"
             app:popExitAnim="@anim/pop_enter_anim"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_pointsAndVouchersFragment"
+            app:destination="@id/pointsAndVouchersFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -160,4 +168,23 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/pointsAndVouchersFragment"
+        android:name="com.example.greentrip.ui.main.vouchers.PointsAndVouchersFragment"
+        android:label="fragment_points_and_vouchers"
+        tools:layout="@layout/fragment_points_and_vouchers" >
+        <action
+            android:id="@+id/action_pointsAndVouchersFragment_to_allVouchersFragment"
+            app:destination="@id/allVouchersFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/allVouchersFragment"
+        android:name="com.example.greentrip.ui.main.vouchers.AllVouchersFragment"
+        android:label="fragment_all_vouchers"
+        tools:layout="@layout/fragment_all_vouchers" />
 </navigation>

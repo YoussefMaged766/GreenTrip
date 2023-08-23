@@ -12,14 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentRewardDetailsBinding
+import com.example.greentrip.models.BookingModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -37,6 +40,7 @@ class RewardDetailsFragment : Fragment() {
     val id: RewardDetailsFragmentArgs by navArgs()
     val viewModel: RewardsViewModel by viewModels()
     lateinit var dialog: Dialog
+    var point: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -56,14 +60,27 @@ class RewardDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         callApi()
         collectStates()
-        showDialog()
+        redeemPoint()
+        collectStateAfterRedeem()
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.rewardsFragment)
+        }
     }
 
     private fun callApi() {
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.getSpecificReward(id.id)
         }
 
+
+    }
+
+    private fun redeemPoint() {
+        binding.btnRescue.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.createVoucher(BookingModel(reward = point))
+            }
+        }
 
     }
 
@@ -88,7 +105,9 @@ class RewardDetailsFragment : Fragment() {
                         binding.txtAddress.text = it.reward?.data?.data?.pointOfInterest?.address
 //                        binding.txtRegion.text = it.specificPoint?.data?.data?.
                         binding.txtPoints.text =
-                            it.reward?.data?.data?.pointOfInterest?.costPoints.toString()
+                            it.reward?.data?.data?.costPoints.toString()
+
+                        point = it.reward?.data?.data?._id
 
                         binding.txtValid.text =
                             getDays(it.reward?.data?.data?.expireDate.toString())
@@ -100,6 +119,30 @@ class RewardDetailsFragment : Fragment() {
 
         }
 
+    }
+
+    private fun collectStateAfterRedeem() {
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewModel.statePoint
+                .distinctUntilChanged()
+                .onEach {
+                    Log.e("collectStates: ", it.isLoading.toString())
+                }
+                .collectLatest {
+                    binding.loading.loadingIndicator.isIndeterminate = it.isLoading
+                    binding.loading.loadingOverlay.isVisible = it.isLoading
+
+                    if (!it.isLoading && it.status == "success") {
+                        showDialog()
+                    }
+                    if (!it.isLoading &&it.status != null) {
+                        Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+        }
     }
 
     private fun getDays(expireDate: String): String {
@@ -114,33 +157,34 @@ class RewardDetailsFragment : Fragment() {
     }
 
     private fun showDialog() {
-        binding.btnRescue.setOnClickListener {
-            dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.reedem_dialog)
-            dialog.setCancelable(false)
-            val btnOk = dialog.findViewById<Button>(R.id.btnOk)
-            val txt = dialog.findViewById<TextView>(R.id.txt2)
-            val pointsVouchers = getString(R.string.reedem_point)
-            val pointsVouchersParts = pointsVouchers.split("Points and Vouchers")
 
-            val boldStyle = StyleSpan(Typeface.BOLD)
+        dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.reedem_dialog)
+        dialog.setCancelable(false)
+        val btnOk = dialog.findViewById<Button>(R.id.btnOk)
+        val txt = dialog.findViewById<TextView>(R.id.txt2)
+        val pointsVouchers = getString(R.string.reedem_point)
+        val pointsVouchersParts = pointsVouchers.split("Points and Vouchers")
 
-            val formattedString = SpannableStringBuilder()
-                .append(pointsVouchersParts[0])
-                .append(
-                    "Points and Vouchers",
-                    boldStyle,
-                    SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                .append(pointsVouchersParts[1])
+        val boldStyle = StyleSpan(Typeface.BOLD)
 
-            txt.text = formattedString
+        val formattedString = SpannableStringBuilder()
+            .append(pointsVouchersParts[0])
+            .append(
+                "Points and Vouchers",
+                boldStyle,
+                SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            .append(pointsVouchersParts[1])
 
-            btnOk.setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.show()
+        txt.text = formattedString
+
+        btnOk.setOnClickListener {
+            dialog.dismiss()
+            findNavController().navigate(R.id.homeFragment)
         }
+        dialog.show()
+
     }
 
 }

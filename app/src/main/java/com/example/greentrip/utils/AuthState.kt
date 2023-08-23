@@ -12,7 +12,7 @@ data class AuthState(
     val isLoading: Boolean = false,
     val status: String? = null,
     val userLogin: LoginResponse? = null,
-    val profile :UserResponse? = null,
+    val profile : UserResponse? = null,
     val points :PointsResponse? = null,
     val specificPoint:SpecificPointResponse? = null,
     val activity : ActivityResponse? = null,

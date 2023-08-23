@@ -44,6 +44,9 @@ class HomeFragment : Fragment() {
         binding.cardRewards.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_rewardsFragment)
         }
+        binding.cardVouchers.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_pointsAndVouchersFragment)
+        }
 
 
     }

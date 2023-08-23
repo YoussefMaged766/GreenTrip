@@ -257,6 +257,35 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
 
     }.flowOn(Dispatchers.IO)
 
+    fun createVoucher(booking:BookingModel) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.createVoucher(booking)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
     fun getSpecificActivity(id:String) = flow {
 
         try {

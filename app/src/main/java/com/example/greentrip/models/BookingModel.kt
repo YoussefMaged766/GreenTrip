@@ -6,7 +6,8 @@ data class BookingModel(
     val activity: String? = null,
     val point: String? = null,
     val numOfDays: Int? = null,
-    val points:Int?=null
+    val points:Int?=null,
+    val reward:String?=null,
 )
 
 

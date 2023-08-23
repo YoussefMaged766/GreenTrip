@@ -9,6 +9,7 @@ import com.example.greentrip.models.RewardResponse
 import com.example.greentrip.models.SpecificPointResponse
 import com.example.greentrip.models.SpecificRewardResponse
 import com.example.greentrip.models.UserResponse
+import com.example.greentrip.models.VoucherResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -64,6 +65,9 @@ interface WebServices {
     @PATCH("api/v1/users/points/add")
     suspend fun addPoint(@Body booking: BookingModel): ActivityResponse
 
+//    @PATCH("api/v1/users/points/remove/")
+//    suspend fun removePoint(@Body booking: BookingModel): ActivityResponse
+
     @GET("api/v1/actvities/{id}")
     suspend fun getSpecificActivity(@Path("id") id: String): SpecificPointResponse
 
@@ -72,6 +76,9 @@ interface WebServices {
 
     @GET("api/v1/rewards/{id}")
     suspend fun getSpecificReward(@Path("id") id: String): SpecificRewardResponse
+
+    @POST("api/v1/vouchers/")
+    suspend fun createVoucher(@Body booking: BookingModel):VoucherResponse
 
 
 }
