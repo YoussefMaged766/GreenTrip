@@ -9,6 +9,7 @@ import com.example.greentrip.data.repository.AuthRepo
 import com.example.greentrip.data.repository.DataStoreRepository
 import com.example.greentrip.utils.TokenInterceptor
 import com.example.greentrip.utils.WebServices
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +27,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+
 
     @Provides
     @Singleton

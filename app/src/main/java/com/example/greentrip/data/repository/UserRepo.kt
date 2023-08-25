@@ -5,11 +5,13 @@ import android.net.Uri
 import android.util.Log
 import com.example.greentrip.models.BookingModel
 import com.example.greentrip.models.LoginResponse
+import com.example.greentrip.models.UserResponse
 import com.example.greentrip.utils.Status
 import com.example.greentrip.utils.WebServices
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -50,6 +52,9 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
         }
 
     }.flowOn(Dispatchers.IO)
+
+
+
 
     suspend fun updateProfile(
         fileUri: Uri?,
@@ -257,6 +262,35 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
 
     }.flowOn(Dispatchers.IO)
 
+    fun cancelBooking(booking:BookingModel , id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.cancelBooking(booking , id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
     fun createVoucher(booking:BookingModel) = flow {
 
         try {
@@ -350,6 +384,122 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
             emit(Status.Loading)
 
             val response = webServices.getSpecificReward(id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    fun getAllBooking() = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getAllBookings()
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    fun getSpecificBooking(id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getSpecificBookings(id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    fun getSpecificVoucher(id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.getSpecificVoucher(id)
+            emit(Status.Success(response))
+
+            Log.e("loginUser: ", response.toString())
+
+        } catch (e: Throwable) {
+            when (e) {
+                is HttpException -> {
+                    val type = object : TypeToken<LoginResponse>() {}.type
+                    val errorResponse: LoginResponse? =
+                        gson.fromJson(e.response()?.errorBody()!!.charStream(), type)
+                    Log.e("loginUsereeeee: ", errorResponse?.message.toString())
+                    emit(Status.Error(errorResponse?.message.toString()))
+                }
+
+                is Exception -> {
+                    Log.e("loginUsereeeee: ", e.message.toString())
+                    emit(Status.Error(e.message.toString()))
+                }
+            }
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    fun deleteVoucher(id:String) = flow {
+
+        try {
+            emit(Status.Loading)
+
+            val response = webServices.deleteVoucher(id)
             emit(Status.Success(response))
 
             Log.e("loginUser: ", response.toString())

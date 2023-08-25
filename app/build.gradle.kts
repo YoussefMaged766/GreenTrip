@@ -85,6 +85,9 @@ dependencies {
 
     //dataStore
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
+
 }
 kapt {
     correctErrorTypes = true

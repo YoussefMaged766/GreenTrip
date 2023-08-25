@@ -48,6 +48,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_pointsAndVouchersFragment)
         }
 
+        binding.cardBooking.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_allReservationFragment)
+        }
+
 
     }
 

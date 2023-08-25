@@ -16,6 +16,7 @@ import com.example.greentrip.models.PointsResponse
 import com.example.greentrip.models.UserResponse
 import com.example.greentrip.models.VoucherResponse
 import com.example.greentrip.ui.main.points.MainPointsFragmentDirections
+import com.example.greentrip.ui.main.vouchers.AllVouchersFragmentDirections
 
 class VoucherAdapter() : ListAdapter<UserResponse.Data.Data.Voucher, VoucherAdapter.viewholder>(VoucherAdapter){
 
@@ -54,10 +55,10 @@ class VoucherAdapter() : ListAdapter<UserResponse.Data.Data.Voucher, VoucherAdap
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
        holder.bind(getItem(position))
-//        holder.binding.root.setOnClickListener {
-//            val action = MainPointsFragmentDirections.actionMainPointsFragmentToPointDetailsFragment(getItem(position).id.toString())
-//            it.findNavController().navigate(action)
-//        }
+        holder.binding.root.setOnClickListener {
+            val action = AllVouchersFragmentDirections.actionAllVouchersFragmentToVoucherQRFragment(getItem(position)._id.toString())
+            it.findNavController().navigate(action)
+        }
     }
 
 }

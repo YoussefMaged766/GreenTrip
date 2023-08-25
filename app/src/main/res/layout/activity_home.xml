@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".ui.activity.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -46,6 +46,7 @@
                 app:strokeColor="@color/white"
                 app:cornerRadius="6dp"
                 android:fontFamily="@font/montserrat"
+                android:id="@+id/btnPoints"
                 />
             <TextView
                 android:layout_width="wrap_content"

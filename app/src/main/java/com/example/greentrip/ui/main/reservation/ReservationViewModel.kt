@@ -1,13 +1,10 @@
-package com.example.greentrip.ui.main.vouchers
+package com.example.greentrip.ui.main.reservation
 
-import android.content.Context
-import android.content.Intent
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.greentrip.data.repository.UserRepo
+import com.example.greentrip.models.BookingModel
 import com.example.greentrip.utils.AuthState
-import com.example.greentrip.utils.CountdownService
 import com.example.greentrip.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,24 +13,23 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PointsAndVouchersViewModel@Inject constructor(private val userRepo: UserRepo) : ViewModel() {
+class ReservationViewModel@Inject constructor(private val userRepo: UserRepo) : ViewModel() {
     private val _state = MutableStateFlow(AuthState())
     val state = _state.asSharedFlow()
 
-    private val _stateVoucher = MutableStateFlow(AuthState())
-    val stateVoucher = _stateVoucher.asSharedFlow()
+    private val _stateBooking = MutableStateFlow(AuthState())
+    val stateBooking = _stateBooking.asSharedFlow()
 
 
-    private val _stateDeleteVoucher = MutableStateFlow(AuthState())
-    val stateDeleteVoucher = _stateDeleteVoucher.asSharedFlow()
+    private val _stateCancelBooking = MutableStateFlow(AuthState())
+    val stateCancelBooking = _stateCancelBooking.asSharedFlow()
 
-    init {
-        getProfile()
-    }
 
-    private fun getProfile() =
+
+
+    fun getAllBooking() =
         viewModelScope.launch {
-            userRepo.getProfile().collect {
+            userRepo.getAllBooking().collect {
                 when (it) {
                     is Status.Loading -> {
                         _state.value = _state.value.copy(isLoading = true)
@@ -44,7 +40,8 @@ class PointsAndVouchersViewModel@Inject constructor(private val userRepo: UserRe
                         _state.value = _state.value.copy(
                             isLoading = false,
                             status = it.data.status.toString(),
-                            profile = it.data
+                            reservation = it.data
+
                         )
 
                     }
@@ -63,27 +60,28 @@ class PointsAndVouchersViewModel@Inject constructor(private val userRepo: UserRe
             }
         }
 
-     fun getSpecificVoucher(id:String) =
+     fun getSpecificBooking(id:String) =
         viewModelScope.launch {
-            userRepo.getSpecificVoucher(id).collect {
+            userRepo.getSpecificBooking(id).collect {
                 when (it) {
                     is Status.Loading -> {
-                        _stateVoucher.value = _stateVoucher.value.copy(isLoading = true)
+                        _stateBooking.value = _stateBooking.value.copy(isLoading = true)
                     }
 
                     is Status.Success -> {
 
-                        _stateVoucher.value = _stateVoucher.value.copy(
+                        _stateBooking.value = _stateBooking.value.copy(
                             isLoading = false,
                             status = it.data.status.toString(),
-                            specificVoucher = it.data
+                            specificReservation = it.data
+
                         )
 
                     }
 
                     is Status.Error -> {
 
-                        _stateVoucher.value = _stateVoucher.value.copy(
+                        _stateBooking.value = _stateBooking.value.copy(
                             isLoading = false,
                             status = it.message,
 
@@ -95,31 +93,28 @@ class PointsAndVouchersViewModel@Inject constructor(private val userRepo: UserRe
             }
         }
 
-    fun startTimerWithId(id: String , context: Context) {
-        context.startService( Intent(context, CountdownService::class.java).putExtra("ID_KEY", id))
-    }
-
-     fun deleteVoucher(id:String) =
+    fun cancelBooking(booking: BookingModel ,id:String) =
         viewModelScope.launch {
-            userRepo.deleteVoucher(id).collect {
+            userRepo.cancelBooking(booking,id).collect {
                 when (it) {
                     is Status.Loading -> {
-                        _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(isLoading = true)
+                        _stateCancelBooking.value = _stateCancelBooking.value.copy(isLoading = true)
                     }
 
                     is Status.Success -> {
 
-                        _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(
+                        _stateCancelBooking.value = _stateCancelBooking.value.copy(
                             isLoading = false,
-                            status = it.data.status.toString(),
-                            specificVoucher = it.data
+                            status = it.data.status.toString()
+
+
                         )
 
                     }
 
                     is Status.Error -> {
 
-                        _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(
+                        _stateCancelBooking.value = _stateCancelBooking.value.copy(
                             isLoading = false,
                             status = it.message,
 

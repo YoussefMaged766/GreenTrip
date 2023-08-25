@@ -41,6 +41,14 @@
             app:popEnterAnim="@anim/pop_exit_anim"
             app:popExitAnim="@anim/pop_enter_anim"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_allReservationFragment"
+            app:destination="@id/allReservationFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -186,5 +194,49 @@
         android:id="@+id/allVouchersFragment"
         android:name="com.example.greentrip.ui.main.vouchers.AllVouchersFragment"
         android:label="fragment_all_vouchers"
-        tools:layout="@layout/fragment_all_vouchers" />
+        tools:layout="@layout/fragment_all_vouchers" >
+        <action
+            android:id="@+id/action_allVouchersFragment_to_voucherQRFragment"
+            app:destination="@id/voucherQRFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/allReservationFragment"
+        android:name="com.example.greentrip.ui.main.reservation.AllReservationFragment"
+        android:label="fragment_all_reservation"
+        tools:layout="@layout/fragment_all_reservation" >
+        <action
+            android:id="@+id/action_allReservationFragment_to_reservationInfoFragment"
+            app:destination="@id/reservationInfoFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_exit_anim"
+            app:popExitAnim="@anim/pop_enter_anim"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationInfoFragment"
+        android:name="com.example.greentrip.ui.main.reservation.ReservationInfoFragment"
+        android:label="fragment_reservation_info"
+        tools:layout="@layout/fragment_reservation_info" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/voucherQRFragment"
+        android:name="com.example.greentrip.ui.main.vouchers.VoucherQRFragment"
+        android:label="fragment_voucher_q_r"
+        tools:layout="@layout/fragment_voucher_q_r" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

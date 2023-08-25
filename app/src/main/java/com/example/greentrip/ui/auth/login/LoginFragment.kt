@@ -16,7 +16,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.greentrip.HomeActivity
+import com.example.greentrip.ui.activity.HomeActivity
 import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.constants.Constants.dataStore

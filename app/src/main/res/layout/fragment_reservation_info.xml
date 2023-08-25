@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.reservation.ReservationInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:backgroundTint="@color/white"
+            android:elevation="0dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Reservation Info"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/_16sdp"
+            android:src="@drawable/green_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/booking"
+            app:layout_constraintBottom_toBottomOf="@id/img"
+            app:layout_constraintEnd_toEndOf="@id/img"
+            app:layout_constraintStart_toStartOf="@id/img"
+            app:layout_constraintTop_toTopOf="@id/img" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/view_style"
+            app:layout_constraintTop_toBottomOf="@id/img">
+
+            <ImageView
+                android:id="@+id/pointImg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtPointName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/pointImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="fsadf" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Address:"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout" />
+
+        <TextView
+            android:id="@+id/txtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/montserrat_light"
+            android:textColor="#6E798C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt3"
+            app:layout_constraintStart_toEndOf="@id/txt3"
+            app:layout_constraintTop_toTopOf="@id/txt3"
+            tools:text="dfgsdfgsdf" />
+
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Region:"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/txt3"
+            app:layout_constraintTop_toBottomOf="@id/txt3" />
+
+        <TextView
+            android:id="@+id/txtRegion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/montserrat_light"
+            android:textColor="#6E798C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt4"
+            app:layout_constraintStart_toEndOf="@id/txt4"
+            app:layout_constraintTop_toTopOf="@id/txt4"
+            tools:text="dfgsdfgsdf" />
+
+        <TextView
+            android:id="@+id/txt5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Category:"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/txt3"
+            app:layout_constraintTop_toBottomOf="@id/txt4" />
+
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/montserrat_light"
+            android:textColor="#6E798C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt5"
+            app:layout_constraintStart_toEndOf="@id/txt5"
+            app:layout_constraintTop_toTopOf="@id/txt5"
+            tools:text="dfgsdfgsdf" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            app:cardElevation="16dp"
+            app:layout_constraintTop_toBottomOf="@id/txtCategory">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_8sdp">
+
+                <TextView
+                    android:id="@+id/txtYourReservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Your Reservation"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Agent"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txtYourReservation" />
+
+                <TextView
+                    android:id="@+id/txt6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Name:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt9" />
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt6"
+                    app:layout_constraintStart_toEndOf="@id/txt6"
+                    app:layout_constraintTop_toTopOf="@id/txt6"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Phone:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt6" />
+
+                <TextView
+                    android:id="@+id/txtPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt7"
+                    app:layout_constraintStart_toEndOf="@id/txt7"
+                    app:layout_constraintTop_toTopOf="@id/txt7"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Email:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt7" />
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt8"
+                    app:layout_constraintStart_toEndOf="@id/txt8"
+                    app:layout_constraintTop_toTopOf="@id/txt8"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txtYourInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Your info"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txtEmail" />
+
+
+                <TextView
+                    android:id="@+id/txt10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Name:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txtYourInfo" />
+
+                <TextView
+                    android:id="@+id/txtNamePoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt10"
+                    app:layout_constraintStart_toEndOf="@id/txt10"
+                    app:layout_constraintTop_toTopOf="@id/txt10"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Number of days:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt10" />
+
+                <TextView
+                    android:id="@+id/txtNumDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt11"
+                    app:layout_constraintStart_toEndOf="@id/txt11"
+                    app:layout_constraintTop_toTopOf="@id/txt11"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Start Date:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt11" />
+
+                <TextView
+                    android:id="@+id/txtStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt12"
+                    app:layout_constraintStart_toEndOf="@id/txt12"
+                    app:layout_constraintTop_toTopOf="@id/txt12"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="End Date:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt12" />
+
+                <TextView
+                    android:id="@+id/txtEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt13"
+                    app:layout_constraintStart_toEndOf="@id/txt13"
+                    app:layout_constraintTop_toTopOf="@id/txt13"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txt14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Number of people:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/txtYourReservation"
+                    app:layout_constraintTop_toBottomOf="@id/txt13" />
+
+                <TextView
+                    android:id="@+id/txtNumPeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="#6E798C"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt14"
+                    app:layout_constraintStart_toEndOf="@id/txt14"
+                    app:layout_constraintTop_toTopOf="@id/txt14"
+                    tools:text="dfgsdfgsdf" />
+
+                <TextView
+                    android:id="@+id/txtPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="center"
+                    android:text="Your reservation is pending\nWait for confirmation"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtNumPeople" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:backgroundTint="@color/green"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Cancel"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    app:cornerRadius="6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtNumPeople"
+                    app:strokeColor="#26000000" />
+
+                <TextView
+                    android:id="@+id/txtBookCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="center"
+                    android:text="Booking Canceled"
+                    android:textColor="#ff0000"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtNumPeople"
+                    android:visibility="gone"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <include layout="@layout/loading"
+            android:id="@+id/loading"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

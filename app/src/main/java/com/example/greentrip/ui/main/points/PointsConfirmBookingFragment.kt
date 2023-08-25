@@ -1,6 +1,5 @@
 package com.example.greentrip.ui.main.points
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,11 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.greentrip.HomeActivity
-import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentPointsConfirmBookingBinding
-import com.example.greentrip.models.AuthModel
 import com.example.greentrip.models.BookingModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

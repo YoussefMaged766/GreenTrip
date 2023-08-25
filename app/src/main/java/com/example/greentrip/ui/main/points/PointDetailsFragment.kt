@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentPointDetailsBinding
 import com.example.greentrip.models.BookingModel
+import com.example.greentrip.ui.activity.HomeActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -28,6 +30,7 @@ class PointDetailsFragment : Fragment() {
 
     lateinit var binding: FragmentPointDetailsBinding
     private val viewModel: MainPointsViewModel by viewModels()
+    private  val sharedViewModel  by activityViewModels<HomeActivityViewModel>()
     val id: PointDetailsFragmentArgs by navArgs()
     var point: Int? = null
 
@@ -115,6 +118,7 @@ class PointDetailsFragment : Fragment() {
     private fun addPoint() {
         lifecycleScope.launch {
             viewModel.addPoint(BookingModel(points = point))
+            sharedViewModel.getProfile()
         }
     }
 
@@ -131,6 +135,7 @@ class PointDetailsFragment : Fragment() {
                     if (!it.isLoading && it.status == "success") {
 
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                        sharedViewModel.updatePoints.value = true
 
                     }
 
