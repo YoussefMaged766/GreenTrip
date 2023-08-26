@@ -6,14 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentVoucherQRBinding
+import com.example.greentrip.utils.CountdownService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -26,7 +29,7 @@ class VoucherQRFragment : Fragment() {
     lateinit var binding: FragmentVoucherQRBinding
 
     private val viewModel: PointsAndVouchersViewModel by viewModels()
-    val id :VoucherQRFragmentArgs by navArgs()
+    val id: VoucherQRFragmentArgs by navArgs()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +43,7 @@ class VoucherQRFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentVoucherQRBinding.inflate(layoutInflater)
+        binding = FragmentVoucherQRBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -49,11 +52,13 @@ class VoucherQRFragment : Fragment() {
 
         collectStates()
 
+
+
         lifecycleScope.launch {
             viewModel.getSpecificVoucher(id.id)
         }
         startTime()
-
+        collectStatesTimer()
     }
 
     private fun collectStates() {
@@ -68,14 +73,15 @@ class VoucherQRFragment : Fragment() {
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success") {
 
-                        val image = "${Constants.BASEURL}img/qr/${it.specificVoucher?.data?.data?.reward?.pointOfInterest?.qrcode}"
+                        val image =
+                            "${Constants.BASEURL}img/qr/${it.specificVoucher?.data?.data?.reward?.pointOfInterest?.qrcode}"
                         Glide.with(binding.root).load(image).into(binding.imgQR)
 
                         binding.txtTitle.text = it.specificVoucher?.data?.data?.reward?.title
-                        binding.txtAddress.text = it.specificVoucher?.data?.data?.reward?.pointOfInterest?.address
-                        binding.txtRegion.text = it.specificVoucher?.data?.data?.reward?.pointOfInterest?.region
-
-
+                        binding.txtAddress.text =
+                            it.specificVoucher?.data?.data?.reward?.pointOfInterest?.address
+                        binding.txtRegion.text =
+                            it.specificVoucher?.data?.data?.reward?.pointOfInterest?.region
 
 
                     }
@@ -85,9 +91,24 @@ class VoucherQRFragment : Fragment() {
         }
     }
 
-    private fun startTime(){
+    private fun startTime() {
         lifecycleScope.launch {
-            viewModel.startTimerWithId(id.id ,requireContext())
+            viewModel.startTimerWithId(id.id, requireContext())
+        }
+    }
+
+    private fun collectStatesTimer() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.stateDeleteVoucher
+                .onEach {
+                    Log.e("collectStatesTimer: ", it.status.toString())
+                }
+                .collect {
+                    binding.loading.loadingIndicator.isIndeterminate = it.isLoading
+                    binding.loading.loadingOverlay.isVisible = it.isLoading
+
+                }
+
         }
     }
 

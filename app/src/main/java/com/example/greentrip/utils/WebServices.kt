@@ -13,7 +13,6 @@ import com.example.greentrip.models.SpecificRewardResponse
 import com.example.greentrip.models.SpecificVoucherResponse
 import com.example.greentrip.models.UserResponse
 import com.example.greentrip.models.VoucherResponse
-import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

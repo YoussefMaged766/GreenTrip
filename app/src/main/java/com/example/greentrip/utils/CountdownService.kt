@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.os.IBinder
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.greentrip.data.repository.UserRepo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -19,12 +20,9 @@ import javax.inject.Inject
 class CountdownService() : Service() {
     @Inject
     lateinit var userRepo: UserRepo
-    private val serviceScope = CoroutineScope(Dispatchers.IO)
     private var countdownTimer: CountDownTimer? = null
-    private val timerDurationMillis: Long = 20 * 1000 // 30 minutes in milliseconds
+    private val timerDurationMillis: Long = 10 * 1000 // 30 minutes in milliseconds
 
-    private val _stateDeleteVoucher = MutableStateFlow(AuthState())
-    val stateDeleteVoucher = _stateDeleteVoucher.asSharedFlow()
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
@@ -44,11 +42,13 @@ class CountdownService() : Service() {
             }
 
             override fun onFinish() {
-                serviceScope.launch {
-                    deleteVoucher(id)
-                }
+                val intent = Intent("CountdownFinished")
+                intent.putExtra("ID_KEY", id)
+                LocalBroadcastManager.getInstance(this@CountdownService).sendBroadcast(intent)
 
                 Log.e("onTick: ", "finish")
+
+
             }
         }.start()
     }
@@ -58,35 +58,6 @@ class CountdownService() : Service() {
         countdownTimer?.cancel()
     }
 
-    suspend fun deleteVoucher(id: String) =
 
-        userRepo.deleteVoucher(id).collect {
-            when (it) {
-                is Status.Loading -> {
-                    _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(isLoading = true)
-                }
-
-                is Status.Success -> {
-
-                    _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(
-                        isLoading = false,
-                        status = it.data.status.toString(),
-                        specificVoucher = it.data
-                    )
-
-                }
-
-                is Status.Error -> {
-
-                    _stateDeleteVoucher.value = _stateDeleteVoucher.value.copy(
-                        isLoading = false,
-                        status = it.message,
-
-                        )
-                }
-
-                else -> {}
-            }
-        }
 
 }

@@ -500,7 +500,9 @@ class UserRepo @Inject constructor(private val webServices: WebServices) {
             emit(Status.Loading)
 
             val response = webServices.deleteVoucher(id)
-            emit(Status.Success(response))
+                emit(Status.Success(response))
+
+
 
             Log.e("loginUser: ", response.toString())
 

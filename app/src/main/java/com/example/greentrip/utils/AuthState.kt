@@ -10,18 +10,19 @@ import com.example.greentrip.models.SpecificReservationResponse
 import com.example.greentrip.models.SpecificRewardResponse
 import com.example.greentrip.models.SpecificVoucherResponse
 import com.example.greentrip.models.UserResponse
+import retrofit2.Response
 
 data class AuthState(
     val isLoading: Boolean = false,
     val status: String? = null,
     val userLogin: LoginResponse? = null,
-    val profile :UserResponse? = null,
-    val points :PointsResponse? = null,
-    val specificPoint:SpecificPointResponse? = null,
-    val activity : ActivityResponse? = null,
-    val allRewards :RewardResponse? = null,
-    val reward :SpecificRewardResponse? = null,
+    val profile: UserResponse? = null,
+    val points: PointsResponse? = null,
+    val specificPoint: SpecificPointResponse? = null,
+    val activity: ActivityResponse? = null,
+    val allRewards: RewardResponse? = null,
+    val reward: SpecificRewardResponse? = null,
     val reservation: ReservationResponse? = null,
     val specificReservation: SpecificReservationResponse? = null,
-    val specificVoucher: SpecificVoucherResponse?=null,
+    val specificVoucher: SpecificVoucherResponse? = null,
 )
