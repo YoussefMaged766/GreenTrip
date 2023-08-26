@@ -36,8 +36,10 @@ class PointsAdapter() : ListAdapter<PointsResponse.Data, PointsAdapter.viewholde
     class viewholder(var binding: PointItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PointsResponse.Data) {
-            val image = "${Constants.BASEURL}img/pointImg/${data.photo}"
-            Glide.with(binding.root).load(image).into(binding.pointImg)
+//            val image = "${Constants.BASEURL}img/pointImg/${data.photo}"
+//            Glide.with(binding.root).load(image).into(binding.pointImg)
+
+            Glide.with(binding.root).load(data.photo).into(binding.pointImg)
             binding.txtDesc.text = data.address
             binding.txtName.text = data.name
         }

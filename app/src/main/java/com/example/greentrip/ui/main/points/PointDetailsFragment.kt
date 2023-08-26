@@ -89,9 +89,11 @@ class PointDetailsFragment : Fragment() {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success") {
-                        val image =
-                            "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.photo}"
-                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+//                        val image =
+//                            "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.photo}"
+//                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+                        Glide.with(requireContext()).load(it.specificPoint?.data?.data?.photo).into(binding.pointImg)
+
                         binding.txtPointName.text = it.specificPoint?.data?.data?.name
                         binding.txtDesc.text = it.specificPoint?.data?.data?.description
                         binding.txtPoint.text = "${it.specificPoint?.data?.data?.costPoints} points"
@@ -117,8 +119,9 @@ class PointDetailsFragment : Fragment() {
 
     private fun addPoint() {
         lifecycleScope.launch {
+
             viewModel.addPoint(BookingModel(points = point))
-            sharedViewModel.getProfile()
+
         }
     }
 
@@ -136,6 +139,7 @@ class PointDetailsFragment : Fragment() {
 
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
                         sharedViewModel.updatePoints.value = true
+                        sharedViewModel.getProfile()
 
                     }
 

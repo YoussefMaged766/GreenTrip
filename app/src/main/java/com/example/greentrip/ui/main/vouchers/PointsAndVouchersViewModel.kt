@@ -41,10 +41,10 @@ class PointsAndVouchersViewModel @Inject constructor(private val userRepo: UserR
 
     init {
         getProfile()
-        setupBroadcastReceiver()
+
     }
 
-    private fun setupBroadcastReceiver() {
+     fun setupBroadcastReceiver() {
         val context = contextRef.get()
 
         if (context != null) {
@@ -54,7 +54,6 @@ class PointsAndVouchersViewModel @Inject constructor(private val userRepo: UserR
                     id?.let {
                         viewModelScope.launch {
                             deleteVoucher(id)
-                            Toast.makeText(context, "Deleted Success", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -167,13 +166,13 @@ class PointsAndVouchersViewModel @Inject constructor(private val userRepo: UserR
             }
         }
 
-    override fun onCleared() {
-        super.onCleared()
-        val context = contextRef.get()
-
-        if (context != null) {
-            LocalBroadcastManager.getInstance(context).unregisterReceiver(broadcastReceiver)
-        }
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//        val context = contextRef.get()
+//
+//        if (context != null) {
+//            LocalBroadcastManager.getInstance(context).unregisterReceiver(broadcastReceiver)
+//        }
+//    }
 
 }

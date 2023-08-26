@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -23,6 +24,7 @@ import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentRewardDetailsBinding
 import com.example.greentrip.models.BookingModel
+import com.example.greentrip.ui.activity.HomeActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -39,6 +41,7 @@ class RewardDetailsFragment : Fragment() {
     lateinit var binding: FragmentRewardDetailsBinding
     val id: RewardDetailsFragmentArgs by navArgs()
     val viewModel: RewardsViewModel by viewModels()
+    private  val sharedViewModel  by activityViewModels<HomeActivityViewModel>()
     lateinit var dialog: Dialog
     var point: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +82,7 @@ class RewardDetailsFragment : Fragment() {
         binding.btnRescue.setOnClickListener {
             lifecycleScope.launch {
                 viewModel.createVoucher(BookingModel(reward = point))
+
             }
         }
 
@@ -96,9 +100,11 @@ class RewardDetailsFragment : Fragment() {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success") {
-                        val image =
-                            "${Constants.BASEURL}img/pointImg/${it.reward?.data?.data?.pointOfInterest?.photo}"
-                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+//                        val image =
+//                            "${Constants.BASEURL}img/pointImg/${it.reward?.data?.data?.pointOfInterest?.photo}"
+//                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+
+                        Glide.with(requireContext()).load(it.reward?.data?.data?.pointOfInterest?.photo).into(binding.pointImg)
                         binding.txtPointName.text = it.reward?.data?.data?.pointOfInterest?.name
                         binding.txtTitle.text = it.reward?.data?.data?.title
                         binding.txtDesc.text = it.reward?.data?.data?.description
@@ -138,6 +144,8 @@ class RewardDetailsFragment : Fragment() {
                     }
                     if (!it.isLoading &&it.status != null) {
                         Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
+                        sharedViewModel.updatePoints.value = true
+                        sharedViewModel.getProfile()
                     }
 
                 }

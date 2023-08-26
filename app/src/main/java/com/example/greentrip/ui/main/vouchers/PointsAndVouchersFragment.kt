@@ -65,11 +65,25 @@ class PointsAndVouchersFragment : Fragment() {
 
                         binding.txtPoints.text = it.profile?.data?.data?.points.toString()
                         binding.txtVoucher.text = it.profile?.data?.data?.vouchers?.size.toString()
+                        Log.e( "collectStatesVoucher: ", it.profile?.data?.data?.vouchers?.size.toString())
 
-                        val image = "${Constants.BASEURL}img/pointImg/${ it.profile?.data?.data?.vouchers?.get(0)?.reward?.pointOfInterest?.photo}"
-                        Glide.with(binding.root).load(image).into(binding.voucherImg)
+                        if (it.profile?.data?.data?.vouchers!!.isNotEmpty()){
+//                            val image = "${Constants.BASEURL}img/pointImg/${ it.profile?.data?.data?.vouchers?.get(0)?.reward?.pointOfInterest?.photo}"
+//                            Glide.with(binding.root).load(image).into(binding.voucherImg)
+                            Glide.with(binding.root).load(it.profile.data.data.vouchers.get(0)?.reward?.pointOfInterest?.photo).into(binding.voucherImg)
 
-                        binding.txtName.text = it.profile?.data?.data?.vouchers?.get(0)?.reward?.title
+                            binding.txtName.text = it.profile?.data?.data?.vouchers?.get(0)?.reward?.title
+                        }else{
+                            binding.txtName.text = "No Voucher"
+                            binding.btnMore.visibility = View.GONE
+                            binding.voucherImg.visibility = View.GONE
+                            binding.txtDesc.visibility = View.GONE
+
+                        }
+
+
+
+
 
                     }
 

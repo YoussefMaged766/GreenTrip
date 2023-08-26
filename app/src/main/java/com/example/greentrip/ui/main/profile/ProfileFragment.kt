@@ -73,7 +73,7 @@ class ProfileFragment : Fragment() {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success"){
-                        val image = "${Constants.BASEURL}/img/avatars/${it.profile?.data?.data?.avatar}"
+//                        val image = "${Constants.BASEURL}/img/avatars/${it.profile?.data?.data?.avatar}"
 
 
 
@@ -84,7 +84,7 @@ class ProfileFragment : Fragment() {
                         binding.txtPhoneCard.text = "Phone: ${it.profile?.data?.data?.phone}"
                         binding.txtPasswordCard.text = "Password: *********"
                         binding.txtEmailCard.text = "Email: ${it.profile?.data?.data?.email}"
-                        Glide.with(requireContext()).load(image).into(binding.imgProfile)
+                        Glide.with(requireContext()).load(it.profile?.data?.data?.avatar).into(binding.imgProfile)
                     }
 
                 }

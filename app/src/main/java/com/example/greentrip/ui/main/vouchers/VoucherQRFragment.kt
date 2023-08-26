@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide
 import com.example.greentrip.R
 import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentVoucherQRBinding
-import com.example.greentrip.utils.CountdownService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -73,9 +72,11 @@ class VoucherQRFragment : Fragment() {
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success") {
 
-                        val image =
-                            "${Constants.BASEURL}img/qr/${it.specificVoucher?.data?.data?.reward?.pointOfInterest?.qrcode}"
-                        Glide.with(binding.root).load(image).into(binding.imgQR)
+//                        val image =
+//                            "${Constants.BASEURL}img/qr/${it.specificVoucher?.data?.data?.reward?.pointOfInterest?.qrcode}"
+//                        Glide.with(binding.root).load(image).into(binding.imgQR)
+
+                        Glide.with(binding.root).load(it.specificVoucher?.data?.data?.reward?.qrcode).into(binding.imgQR)
 
                         binding.txtTitle.text = it.specificVoucher?.data?.data?.reward?.title
                         binding.txtAddress.text =
@@ -94,6 +95,7 @@ class VoucherQRFragment : Fragment() {
     private fun startTime() {
         lifecycleScope.launch {
             viewModel.startTimerWithId(id.id, requireContext())
+            viewModel.setupBroadcastReceiver()
         }
     }
 
@@ -106,6 +108,14 @@ class VoucherQRFragment : Fragment() {
                 .collect {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
+                    if (!it.isLoading && it.status == "success") {
+                        Toast.makeText(
+                            requireContext(),
+                            "Voucher deleted successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigate(R.id.homeFragment)
+                    }
 
                 }
 

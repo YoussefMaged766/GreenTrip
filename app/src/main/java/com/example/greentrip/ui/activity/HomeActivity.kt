@@ -1,22 +1,17 @@
 package com.example.greentrip.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
+import androidx.navigation.Navigation.findNavController
 import com.example.greentrip.R
-import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.ActivityHomeBinding
-import com.example.greentrip.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -30,6 +25,10 @@ class HomeActivity : AppCompatActivity() {
 
         collectStates()
         updatePoints()
+        binding.imgHome.setOnClickListener {
+            val navController = findNavController(this, R.id.nav_host_fragment)
+            navController.navigate(R.id.homeFragment)
+        }
 
 
     }

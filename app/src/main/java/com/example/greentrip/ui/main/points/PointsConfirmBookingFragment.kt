@@ -109,9 +109,9 @@ class PointsConfirmBookingFragment : Fragment() {
 
                         binding.txtPointName.text = it.specificPoint?.data?.data?.name
 
-                        val image = "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.photo}"
-                        Glide.with(binding.root).load(image).into(binding.pointImg)
-
+//                        val image = "${Constants.BASEURL}img/pointImg/${it.specificPoint?.data?.data?.photo}"
+//                        Glide.with(binding.root).load(image).into(binding.pointImg)
+                        Glide.with(binding.root).load(it.specificPoint?.data?.data?.photo).into(binding.pointImg)
 
 
                     }

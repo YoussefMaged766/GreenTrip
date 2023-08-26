@@ -204,8 +204,8 @@ class EditProfileFragment : Fragment() {
                     binding.loading.loadingIndicator.isIndeterminate = it.isLoading
                     binding.loading.loadingOverlay.isVisible = it.isLoading
                     if (!it.isLoading && it.status == "success"){
-                        val image = "${Constants.BASEURL}/img/avatars/${it.profile?.data?.data?.avatar}"
-                        Log.e( "collectStates: ", image.toString())
+//                        val image = "${Constants.BASEURL}/img/avatars/${it.profile?.data?.data?.avatar}"
+
 
 
 
@@ -214,7 +214,7 @@ class EditProfileFragment : Fragment() {
 
                         binding.editTextPhone.setText(it.profile?.data?.data?.phone)
                         binding.editTextEmail.setText(it.profile?.data?.data?.email)
-                        Glide.with(requireContext()).load(image).into(binding.imgProfile)
+                        Glide.with(requireContext()).load(it.profile?.data?.data?.avatar).into(binding.imgProfile)
                     }
 
 

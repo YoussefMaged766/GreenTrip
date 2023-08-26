@@ -69,13 +69,17 @@ class AllActivityFragment : Fragment() {
                     binding.loading.loadingOverlay.isVisible = it.isLoading
 
                     if (!it.isLoading && it.status == "success"){
-                        val image =
-                            "${Constants.BASEURL}img/pointImg/${it.activity?.data?.get(0)?.pointOfInterest?.photo}"
-                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+//                        val image =
+//                            "${Constants.BASEURL}img/pointImg/${it.activity?.data?.get(0)?.pointOfInterest?.photo}"
+//                        Glide.with(requireContext()).load(image).into(binding.pointImg)
+                        if (it.activity?.data!!.isNotEmpty()){
+                            Glide.with(requireContext()).load(it.activity?.data?.get(0)?.pointOfInterest?.photo).into(binding.pointImg)
+                            binding.txtPointName.text = it.activity?.data?.get(0)?.pointOfInterest?.name
+                            adapter.submitList(it.activity?.data)
+                            binding.RecyclerActivity.adapter = adapter
+                        }
 
-                        binding.txtPointName.text = it.activity?.data?.get(0)?.pointOfInterest?.name
-                        adapter.submitList(it.activity?.data)
-                        binding.RecyclerActivity.adapter = adapter
+
 
                     }
 

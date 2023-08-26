@@ -81,13 +81,17 @@ class ReservationInfoFragment : Fragment() {
                     if (!it.isLoading && it.status == "success") {
 
                         if (it.specificReservation?.data?.data?.point?.photo != null) {
-                            val image =
-                                "${Constants.BASEURL}img/pointImg/${it.specificReservation.data.data.point.photo}"
-                            Glide.with(requireContext()).load(image).into(binding.pointImg)
+//                            val image =
+//                                "${Constants.BASEURL}img/pointImg/${it.specificReservation.data.data.point.photo}"
+//                            Glide.with(requireContext()).load(image).into(binding.pointImg)
+
+                            Glide.with(requireContext()).load(it.specificReservation.data.data.point.photo).into(binding.pointImg)
                         } else {
-                            val image =
-                                "${Constants.BASEURL}img/pointImg/${it.specificReservation?.data?.data?.activity?.pointOfInterest?.photo}"
-                            Glide.with(requireContext()).load(image).into(binding.pointImg)
+//                            val image =
+//                                "${Constants.BASEURL}img/pointImg/${it.specificReservation?.data?.data?.activity?.pointOfInterest?.photo}"
+//                            Glide.with(requireContext()).load(image).into(binding.pointImg)
+
+                            Glide.with(requireContext()).load(it.specificReservation?.data?.data?.activity?.pointOfInterest?.photo).into(binding.pointImg)
                         }
 
                         if (it.specificReservation?.data?.data?.point != null) {

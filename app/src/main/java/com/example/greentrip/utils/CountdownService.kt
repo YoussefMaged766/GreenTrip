@@ -36,28 +36,29 @@ class CountdownService() : Service() {
     }
 
     private fun startCountdown(id: String) {
-        countdownTimer = object : CountDownTimer(timerDurationMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                Log.e("onTick: ", (millisUntilFinished / 1000).toString())
-            }
+        if (countdownTimer == null) {
+            countdownTimer = object : CountDownTimer(timerDurationMillis, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    Log.e("onTick: ", (millisUntilFinished / 1000).toString())
+                }
 
-            override fun onFinish() {
-                val intent = Intent("CountdownFinished")
-                intent.putExtra("ID_KEY", id)
-                LocalBroadcastManager.getInstance(this@CountdownService).sendBroadcast(intent)
+                override fun onFinish() {
+                    val intent = Intent("CountdownFinished")
+                    intent.putExtra("ID_KEY", id)
+                    LocalBroadcastManager.getInstance(this@CountdownService).sendBroadcast(intent)
 
-                Log.e("onTick: ", "finish")
+                    Log.e("onTick: ", "finish")
 
 
-            }
-        }.start()
+                }
+            }.start()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         countdownTimer?.cancel()
     }
-
 
 
 }

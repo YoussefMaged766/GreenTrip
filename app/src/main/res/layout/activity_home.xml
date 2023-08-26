@@ -30,7 +30,7 @@
                 android:src="@drawable/home"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
-                android:id="@+id/imgDelete"
+                android:id="@+id/imgHome"
                 />
 
             <com.google.android.material.button.MaterialButton
