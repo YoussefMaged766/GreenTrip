@@ -13,26 +13,27 @@ import com.example.greentrip.databinding.PointItemBinding
 import com.example.greentrip.databinding.ReservationItemBinding
 import com.example.greentrip.models.PointsResponse
 import com.example.greentrip.models.ReservationResponse
+import com.example.greentrip.models.UserResponse
 import com.example.greentrip.ui.main.points.MainPointsFragmentDirections
 import com.example.greentrip.ui.main.reservation.AllReservationFragmentDirections
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class ReservationAdapter() :
-    ListAdapter<ReservationResponse.Data, ReservationAdapter.viewholder>(ReservationAdapter) {
+    ListAdapter<UserResponse.Data.Data.Booking, ReservationAdapter.viewholder>(ReservationAdapter) {
 
-    companion object : DiffUtil.ItemCallback<ReservationResponse.Data>() {
+    companion object : DiffUtil.ItemCallback<UserResponse.Data.Data.Booking>() {
         override fun areItemsTheSame(
-            oldItem: ReservationResponse.Data,
-            newItem: ReservationResponse.Data
+            oldItem: UserResponse.Data.Data.Booking,
+            newItem: UserResponse.Data.Data.Booking
         ): Boolean {
 
             return oldItem._id == newItem._id
         }
 
         override fun areContentsTheSame(
-            oldItem: ReservationResponse.Data,
-            newItem: ReservationResponse.Data
+            oldItem: UserResponse.Data.Data.Booking,
+            newItem: UserResponse.Data.Data.Booking
         ): Boolean {
             return oldItem._id == newItem._id
         }
@@ -41,7 +42,7 @@ class ReservationAdapter() :
 
     class viewholder(var binding: ReservationItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ReservationResponse.Data) {
+        fun bind(data: UserResponse.Data.Data.Booking) {
             binding.txtDesc.text = convertDateFormat(data.createdAt.toString())
 
             if (data.activity?.name != null || data.point?.name != null) {

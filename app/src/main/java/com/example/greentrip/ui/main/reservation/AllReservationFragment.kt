@@ -74,10 +74,10 @@ class AllReservationFragment : Fragment() {
 
                     if (!it.isLoading && it.status == "success") {
 
-                        it.reservation?.data?.let { reservationList ->
+                        it.profile?.data?.data?.bookings.let { reservationList ->
 
-                            val pendingList = reservationList.filter { it.status == "pending" }
-                            if (pendingList.isNotEmpty()) {
+                            val pendingList = reservationList?.filter { it?.status == "pending" }
+                            if (pendingList!!.isNotEmpty()) {
                                 pendingAdapter.submitList(pendingList)
                                 binding.recyclerPending.adapter = pendingAdapter
                                 binding.recyclerPending.visibility = View.VISIBLE
@@ -88,7 +88,7 @@ class AllReservationFragment : Fragment() {
                                 binding.recyclerPending.visibility = View.GONE
                             }
 
-                            val activeList = reservationList.filter { it.status == "active" }
+                            val activeList = reservationList.filter { it?.status == "active" }
                             if (activeList.isNotEmpty()) {
                                 activeAdapter.submitList(activeList)
                                 binding.recyclerActive.adapter = activeAdapter
@@ -98,7 +98,7 @@ class AllReservationFragment : Fragment() {
                                 binding.recyclerActive.visibility = View.GONE
                             }
 
-                            val cancelList = reservationList.filter { it.status == "canceled" }
+                            val cancelList = reservationList.filter { it?.status == "canceled" }
                             if (cancelList.isNotEmpty()) {
                                 cancelAdapter.submitList(cancelList)
                                 binding.recyclerCanceled.adapter = cancelAdapter

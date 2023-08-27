@@ -30,6 +30,11 @@ class HomeActivity : AppCompatActivity() {
             navController.navigate(R.id.homeFragment)
         }
 
+        binding.btnPoints.setOnClickListener {
+            val navController = findNavController(this, R.id.nav_host_fragment)
+            navController.navigate(R.id.pointsAndVouchersFragment)
+        }
+
 
     }
 

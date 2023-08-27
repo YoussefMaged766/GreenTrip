@@ -29,7 +29,7 @@ class ReservationViewModel@Inject constructor(private val userRepo: UserRepo) : 
 
     fun getAllBooking() =
         viewModelScope.launch {
-            userRepo.getAllBooking().collect {
+            userRepo.getProfile().collect {
                 when (it) {
                     is Status.Loading -> {
                         _state.value = _state.value.copy(isLoading = true)
@@ -40,7 +40,7 @@ class ReservationViewModel@Inject constructor(private val userRepo: UserRepo) : 
                         _state.value = _state.value.copy(
                             isLoading = false,
                             status = it.data.status.toString(),
-                            reservation = it.data
+                            profile = it.data
 
                         )
 

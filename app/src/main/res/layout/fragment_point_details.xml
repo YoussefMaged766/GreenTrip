@@ -24,10 +24,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-             />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtPointName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
@@ -37,8 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/pointImg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="fsadf"
-                android:id="@+id/txtPointName"/>
+                tools:text="fsadf" />
         </FrameLayout>
 
         <androidx.cardview.widget.CardView
@@ -128,17 +127,19 @@
 
                 <TextView
                     android:id="@+id/txtActivityDesc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:fontFamily="@font/montserrat_light"
+                    android:text="Check out all available activities for this place"
                     android:textColor="#6E798C"
                     android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/txtActivity"
-                    app:layout_constraintTop_toBottomOf="@id/txtActivity"
-                    android:text="Check out all available activities for this place" />
+                    app:layout_constraintTop_toBottomOf="@id/txtActivity" />
 
                 <TextView
+                    android:id="@+id/txtMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_16sdp"
@@ -146,7 +147,6 @@
                     android:text="MORE"
                     android:textColor="@color/green"
                     android:textSize="16sp"
-                    android:id="@+id/txtMore"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtActivityDesc" />
 
@@ -172,11 +172,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_light"
+            android:justificationMode="inter_word"
             android:text="dsfgsdfgsdfgdsfsd"
             android:textColor="#6E798C"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="@+id/cardActivity"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/cardActivity"
             app:layout_constraintTop_toBottomOf="@id/txt1" />
 
@@ -336,6 +339,7 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/cardActivity"
             app:layout_constraintTop_toBottomOf="@id/txt8" />
+
         <TextView
             android:id="@+id/txtReservation"
             android:layout_width="wrap_content"
@@ -365,8 +369,9 @@
             app:layout_constraintTop_toBottomOf="@id/txt9"
             app:strokeColor="#26000000" />
 
-        <include layout="@layout/loading"
-            android:id="@+id/loading"/>
+        <include
+            android:id="@+id/loading"
+            layout="@layout/loading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
