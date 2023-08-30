@@ -41,122 +41,7 @@
         app:layout_constraintStart_toStartOf="@id/img"
         app:layout_constraintTop_toTopOf="@id/img" />
 
-    <TextView
-        android:id="@+id/txtFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_22sdp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="Filters"
-        android:textColor="#081F32"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHotel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Hotels"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/hotels"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/txtFilter"
-        app:layout_constraintTop_toBottomOf="@id/txtFilter"
-
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Food"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/food"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/btnNature"
-        app:layout_constraintTop_toBottomOf="@id/txtFilter"
-
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMuseums"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Museums"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/museums"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/btnHotel"
-        app:layout_constraintTop_toBottomOf="@id/btnHotel" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnNature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Nature"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/nature"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toEndOf="@id/btnMuseums"
-        app:layout_constraintTop_toBottomOf="@id/btnHotel" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Sport"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/sport"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/btnMuseums"
-        app:layout_constraintTop_toBottomOf="@id/btnMuseums" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnTransport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Transport"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/transport"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/btnNature"
-        app:layout_constraintTop_toBottomOf="@id/btnMuseums"
-
-        />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnCulture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#EFEFEF"
-        android:fontFamily="@font/montserrat_light"
-        android:text="Culture"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
-        app:icon="@drawable/culture"
-        app:iconTint="@color/black"
-        app:layout_constraintStart_toStartOf="@id/btnSport"
-        app:layout_constraintTop_toBottomOf="@id/btnSport" />
 
 
     <TextView
@@ -169,7 +54,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCulture" />
+        app:layout_constraintTop_toBottomOf="@id/img" />
 
 
     <androidx.recyclerview.widget.RecyclerView
