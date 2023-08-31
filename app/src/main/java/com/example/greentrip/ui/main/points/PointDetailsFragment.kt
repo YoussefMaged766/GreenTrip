@@ -1,5 +1,6 @@
 package com.example.greentrip.ui.main.points
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -19,6 +22,8 @@ import com.example.greentrip.constants.Constants
 import com.example.greentrip.databinding.FragmentPointDetailsBinding
 import com.example.greentrip.models.BookingModel
 import com.example.greentrip.ui.activity.HomeActivityViewModel
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -33,6 +38,7 @@ class PointDetailsFragment : Fragment() {
     private  val sharedViewModel  by activityViewModels<HomeActivityViewModel>()
     val id: PointDetailsFragmentArgs by navArgs()
     var point: Int? = null
+    private lateinit var qrScannerLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,10 +76,40 @@ class PointDetailsFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        qrScannerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val intentResult = IntentIntegrator.parseActivityResult(result.resultCode, result.data)
+            handleScanResult(intentResult)
+        }
+
         collectStates()
         collectStatesPoints()
         binding.img.setOnClickListener {
+            startQRScanner()
+        }
+
+    }
+    private fun startQRScanner(){
+        val integrator = IntentIntegrator(requireActivity())
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+        integrator.setPrompt("Scan a QR Code")
+
+        // Set the camera to be vertically oriented
+        integrator.setOrientationLocked(false)
+        integrator.setCameraId(0) // Use rear camera
+
+        integrator.setBeepEnabled(true)
+        integrator.setBarcodeImageEnabled(true)
+
+
+        qrScannerLauncher.launch(integrator.createScanIntent())
+    }
+    private fun handleScanResult(result: IntentResult?){
+        if (result != null && result.contents != null) {
+            val scannedData = result.contents
+            Log.e( "handleScanResult: ",scannedData.toString() )
             addPoint()
+        } else {
+            // Handle no result
         }
 
     }

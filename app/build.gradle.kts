@@ -88,6 +88,9 @@ dependencies {
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
 
+    implementation ("com.google.zxing:core:3.4.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.2.0")
+
 }
 kapt {
     correctErrorTypes = true
