@@ -9,5 +9,17 @@
 - each point and activity have resevation number 
 - after booking an point or acivity the request send to admin dashboard to approved or declined it
 - when you have enough points you can make redeem it like buy voucher for free
+## Technology Used
+- kotlin
+- MVVM
+- Flow
+- Coroutines
+- Hilt
+- Retrofit
+- QR Scanner
+- navigation component
+| Home | Points | Add Point |
+| --- | --- | --- | 
+| ![Home](images/screen1.png) | ![Two](images/screen2.png) | ![Three](images/screen3.png) | 
 
 
