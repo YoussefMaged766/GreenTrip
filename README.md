@@ -18,7 +18,7 @@
 - Retrofit
 - QR Scanner
 - navigation component
-| Home | Points | Add Point |
+| Home | Points | Point |
 | --- | --- | --- | 
 | ![Home](images/screen1.png) | ![Points](images/screen2.png) | ![Add Point](images/screen3.png) |
 
