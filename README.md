@@ -1,5 +1,8 @@
 # GreenTrip
-<img src="images/logo1.png" alt="Alt Text" width="100" height="100">
+<div>
+  <img src="images/logo1.png" alt="Alt Text" width="100" height="100">
+</div>
+
 ## Main Idea
 - is App for collecting points using scanning qr code
 - for scanning qr there is points and inside each point there is an activities
