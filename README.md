@@ -4,6 +4,7 @@
 </div>
 
 ## Main Idea
+- the app is for client 
 - is App for collecting points using scanning qr code
 - for scanning qr there is points and inside each point there is an activities
 - each point and activity have resevation number 
