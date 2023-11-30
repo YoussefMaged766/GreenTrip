@@ -71,48 +71,48 @@ class ProfileViewModel @Inject constructor(private val userRepo: UserRepo) : Vie
             }
         }
 
-    fun editProfile(
-        fileUri: Uri? = null, fileRealPath: String? = null,
-        name: String,
-        email: String,
-        ctx: Context,
-        phone: String
-    ) =
-        viewModelScope.launch {
-            userRepo.updateProfile(
-                fileUri = fileUri,
-                fileRealPath = fileRealPath,
-                name = name,
-                email = email,
-                ctx = ctx,
-                phone = phone
-            ).collect {
-                when (it) {
-                    is Status.Loading -> {
-                        _state1.value = _state1.value.copy(isLoading = true)
-                    }
+        fun editProfile(
+            fileUri: Uri? = null, fileRealPath: String? = null,
+            name: String,
+            email: String,
+            ctx: Context,
+            phone: String
+        ) =
+            viewModelScope.launch {
+                userRepo.updateProfile(
+                    fileUri = fileUri,
+                    fileRealPath = fileRealPath,
+                    name = name,
+                    email = email,
+                    ctx = ctx,
+                    phone = phone
+                ).collect {
+                    when (it) {
+                        is Status.Loading -> {
+                            _state1.value = _state1.value.copy(isLoading = true)
+                        }
 
-                    is Status.Success -> {
+                        is Status.Success -> {
 
-                        _state1.value = _state1.value.copy(
-                            isLoading = false,
-                            status = it.data.status.toString(),
-
-                        )
-
-                    }
-
-                    is Status.Error -> {
-
-                        _state1.value = _state1.value.copy(
-                            isLoading = false,
-                            status = it.message,
+                            _state1.value = _state1.value.copy(
+                                isLoading = false,
+                                status = it.data.status.toString(),
 
                             )
-                    }
 
-                    else -> {}
+                        }
+
+                        is Status.Error -> {
+
+                            _state1.value = _state1.value.copy(
+                                isLoading = false,
+                                status = it.message,
+
+                                )
+                        }
+
+                        else -> {}
+                    }
                 }
             }
-        }
 }
